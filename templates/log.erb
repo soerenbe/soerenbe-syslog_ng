@@ -1,0 +1,31 @@
+log {
+  source(<%= @source %>);
+<% if @filter.is_a?(Array) -%>
+<% @filter.each do |f| -%>
+  filter(<%= f %>);
+<% end -%>
+<% else -%>
+<% if @filter -%>
+  filter(<%= filter %>);
+<% end -%>
+<% end -%>
+<% if @filter_spec -%>
+  filter(f_<%= filter_spec %>);
+<% end -%>
+<% if @destination.is_a?(Array) -%>
+<% @destination_array.each do |d| -%>
+  destination(<%= d %>);
+<% end -%>
+<% else -%>
+<% if @destination -%>
+  destination(<%= destination %>);
+<% end -%>
+<% end -%>
+<% if @file -%>
+  destination(d_<%= name %>);
+<% end -%>
+<% if @fallback -%>
+flags(fallback);
+<% end -%>
+};
+

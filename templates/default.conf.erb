@@ -1,0 +1,101 @@
+########################
+# Destinations
+########################
+# First some standard logfile
+#
+destination d_standard_<%= @name %>_auth { file("<%= @directory %>/auth.log"); };
+destination d_standard_<%= @name %>_cron { file("<%= @directory %>/cron.log"); };
+destination d_standard_<%= @name %>_daemon { file("<%= @directory %>/daemon.log"); };
+destination d_standard_<%= @name %>_kern { file("<%= @directory %>/kern.log"); };
+destination d_standard_<%= @name %>_lpr { file("<%= @directory %>/lpr.log"); };
+destination d_standard_<%= @name %>_mail { file("<%= @directory %>/mail.log"); };
+destination d_standard_<%= @name %>_syslog { file("<%= @directory %>/syslog"); };
+destination d_standard_<%= @name %>_user { file("<%= @directory %>/user.log"); };
+destination d_standard_<%= @name %>_uucp { file("<%= @directory %>/uucp.log"); };
+
+# This files are the log come from the mail subsystem.
+#
+destination d_standard_<%= @name %>_mailinfo { file("<%= @directory %>/mail.info"); };
+destination d_standard_<%= @name %>_mailwarn { file("<%= @directory %>/mail.warn"); };
+destination d_standard_<%= @name %>_mailerr { file("<%= @directory %>/mail.err"); };
+
+# Logging for INN news system
+#
+destination d_standard_<%= @name %>_newscrit { file("<%= @directory %>/news/news.crit"); };
+destination d_standard_<%= @name %>_newserr { file("<%= @directory %>/news/news.err"); };
+destination d_standard_<%= @name %>_newsnotice { file("<%= @directory %>/news/news.notice"); };
+
+# Some `catch-all' logfiles.
+#
+destination d_standard_<%= @name %>_debug { file("<%= @directory %>/debug"); };
+destination d_standard_<%= @name %>_error { file("<%= @directory %>/error"); };
+destination d_standard_<%= @name %>_messages { file("<%= @directory %>/messages"); };
+
+# Debian only
+destination d_standard_<%= @name %>_ppp { file("<%= @directory %>/ppp.log"); };
+
+destination d_standard_<%= @name %>_puppet { file("<%= @directory %>/puppet.log"); };
+########################
+# Filters
+########################
+# Here's come the filter options. With this rules, we can set which
+# message go where.
+
+filter f_standard_<%= @name %>_dbg { level(debug); };
+filter f_standard_<%= @name %>_info { level(info); };
+filter f_standard_<%= @name %>_notice { level(notice); };
+filter f_standard_<%= @name %>_warn { level(warn); };
+filter f_standard_<%= @name %>_err { level(err); };
+filter f_standard_<%= @name %>_crit { level(crit .. emerg); };
+
+filter f_standard_<%= @name %>_debug { level(debug) and not facility(auth, authpriv, news, mail); };
+filter f_standard_<%= @name %>_error { level(err .. emerg) ; };
+filter f_standard_<%= @name %>_messages { level(info,notice,warn) and not facility(auth,authpriv,cron,daemon,mail,news); };
+
+filter f_standard_<%= @name %>_puppet { program(puppet-agent); };
+
+filter f_standard_<%= @name %>_auth { facility(auth, authpriv) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_cron { facility(cron) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_daemon { facility(daemon) and not filter(f_standard_<%= @name %>_debug) and not filter(f_standard_<%= @name %>_puppet); };
+filter f_standard_<%= @name %>_kern { facility(kern) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_lpr { facility(lpr) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_local { facility(local0, local1, local3, local4, local5,
+                        local6, local7) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_mail { facility(mail) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_news { facility(news) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_syslog3 { not facility(auth, authpriv, mail) and not filter(f_standard_<%= @name %>_debug) and not filter(f_standard_<%= @name %>_puppet); };
+filter f_standard_<%= @name %>_user { facility(user) and not filter(f_standard_<%= @name %>_debug); };
+filter f_standard_<%= @name %>_uucp { facility(uucp) and not filter(f_standard_<%= @name %>_debug); };
+
+filter f_standard_<%= @name %>_cnews { level(notice, err, crit) and facility(news); };
+filter f_standard_<%= @name %>_cother { level(debug, info, notice, warn) or facility(daemon, mail); };
+
+filter f_standard_<%= @name %>_ppp { facility(local2) and not filter(f_standard_<%= @name %>_debug); };
+
+<% if @host -%>
+filter f_standard_<%= @name %>_host { host(<%= host %>);};
+<% end -%>
+########################
+# Log paths
+########################
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_auth); destination(d_standard_<%= @name %>_auth); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_cron); destination(d_standard_<%= @name %>_cron); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_daemon); destination(d_standard_<%= @name %>_daemon); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_kern); destination(d_standard_<%= @name %>_kern); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_lpr); destination(d_standard_<%= @name %>_lpr); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_syslog3); destination(d_standard_<%= @name %>_syslog); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_user); destination(d_standard_<%= @name %>_user); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_uucp); destination(d_standard_<%= @name %>_uucp); };
+
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_mail); destination(d_standard_<%= @name %>_mail); };
+
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_news); filter(f_standard_<%= @name %>_crit); destination(d_standard_<%= @name %>_newscrit); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_news); filter(f_standard_<%= @name %>_err); destination(d_standard_<%= @name %>_newserr); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_news); filter(f_standard_<%= @name %>_notice); destination(d_standard_<%= @name %>_newsnotice); };
+
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_debug); destination(d_standard_<%= @name %>_debug); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_error); destination(d_standard_<%= @name %>_error); };
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_messages); destination(d_standard_<%= @name %>_messages); };
+
+log { source(<%= @source %>); <% if @host -%>filter(f_standard_<%= @name %>_host)<% end -%>; filter(f_standard_<%= @name %>_puppet); destination(d_standard_<%= @name %>_puppet); };
+
