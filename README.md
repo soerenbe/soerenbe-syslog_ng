@@ -38,13 +38,13 @@ This is a puppet syslog_ng module. On basic settings it simply installs the sysl
 
 Mainly this module manages all file in `/etc/syslog-ng`. It creates a basic `/etc/syslog/syslog-ng.conf` and include configuration fragments in `/etc/syslog-ng/conf.d`.
 
-WARNING: Typically syslog-ng replaces the current (and default) syslog deamon. This means it will uninstall `rsylogd`!
+WARNING: Typically syslog-ng replaces the current (and default) syslog deamon. This means it will uninstall `rsyslogd`!
 
 ### Setup Requirements
 
 `syslog_ng` requires `puppetlabs-stdlib` and `puppetlabs-concat`
 
-### Beginning with syslog_nghea
+### Beginning with syslog_ng
 
 ```puppet
     include syslog_ng
@@ -225,9 +225,9 @@ This type defines a syslog-ng filter. You may use any filter syntax syslog-ng pr
 
 Examples:
 ```puppet
-    syslog_ng::filter {'host_filter':   spec => 'host("webserver")' }
-    syslog_ng::filter {'program_filter: spec => 'program("puppet-agent")' }
-    syslog_ng::filter {'nodebug_apache: spec => 'program("apache2") and level(info..emerg)' }
+    syslog_ng::filter {'host_filter':    spec => 'host("webserver")' }
+    syslog_ng::filter {'program_filter': spec => 'program("puppet-agent")' }
+    syslog_ng::filter {'nodebug_apache': spec => 'program("apache2") and level(info..emerg)' }
 ```
 ### Defined Type: syslog_ng::log
 This type defines the general log behaviour. It used defined sources, filter and destination and combine them to a logging rule.
@@ -303,6 +303,14 @@ This type may define some log dirs which will be generated. syslog_ng::reminder_
 ## Limitations
 
 This module heavily tested under Ubuntu 14.04, but through the nature of syslog-ng at least Debian and other Ubuntu versions should work fine.
+
+The module does not cover all features by syslog-ng. Some examples:
+
+* message flags that are not the fallback flags
+* message templates
+* message reformating
+
+Futher releases may add some features depending on the developers motivation/requirements or community feedback.
 
 ## Development
 
