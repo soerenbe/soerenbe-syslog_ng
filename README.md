@@ -149,15 +149,15 @@ This is the main class for the syslog-ng installation. See `syslog_ng::params` f
       $default_owner             = $syslog_ng::params::default_owner,              # global default for syslog-ng
       $default_group             = $syslog_ng::params::default_group,              # global default for syslog-ng
       $default_perm              = $syslog_ng::params::default_perm,               # global default for syslog-ng
-      $use_fqdn                  = $syslog_ng::params::use_fqdn,                   # syslog-ng config parameter (see XXX)
-      $use_dns                   = $syslog_ng::params::use_dns,                    # syslog-ng config parameter (see XXX)
-      $chain_hostnames           = $syslog_ng::params::chain_hostnames,            # syslog-ng config parameter (see XXX)
-      $stats_freq                = $syslog_ng::params::stats_freq,                 # syslog-ng config parameter (see XXX)
-      $mark_freq                 = $syslog_ng::params::mark_freq,                  # syslog-ng config parameter (see XXX)
-      $threaded                  = $syslog_ng::params::threaded,                   # syslog-ng config parameter (see XXX)
-      $flush_lines               = $syslog_ng::params::flush_lines,                # syslog-ng config parameter (see XXX)
-      $log_fifo_size             = $syslog_ng::params::log_fifo_size,              # syslog-ng config parameter (see XXX)
-      $log_fifo_size_destination = $syslog_ng::params::log_fifo_size_destination,  # syslog-ng config parameter (see XXX)
+      $use_fqdn                  = $syslog_ng::params::use_fqdn,                   # syslog-ng config parameter
+      $use_dns                   = $syslog_ng::params::use_dns,                    # syslog-ng config parameter
+      $chain_hostnames           = $syslog_ng::params::chain_hostnames,            # syslog-ng config parameter
+      $stats_freq                = $syslog_ng::params::stats_freq,                 # syslog-ng config parameter
+      $mark_freq                 = $syslog_ng::params::mark_freq,                  # syslog-ng config parameter
+      $threaded                  = $syslog_ng::params::threaded,                   # syslog-ng config parameter
+      $flush_lines               = $syslog_ng::params::flush_lines,                # syslog-ng config parameter
+      $log_fifo_size             = $syslog_ng::params::log_fifo_size,              # syslog-ng config parameter
+      $log_fifo_size_destination = $syslog_ng::params::log_fifo_size_destination,  # syslog-ng config parameter
     )
 ```
 
