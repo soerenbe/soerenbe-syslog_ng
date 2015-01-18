@@ -300,11 +300,6 @@ This type may define some log dirs which will be generated. syslog_ng::reminder_
 * syslog-ng reference options [Link](http://www.balabit.com/sites/default/files/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html/reference-options.html)
 * Since your log files may run out of control have a look at [rodjek/logrotate](https://forge.puppetlabs.com/rodjek/logrotate)
   
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
-
 ## Limitations
 
 This module heavily tested under Ubuntu 14.04, but through the nature of syslog-ng at least Debian and other Ubuntu versions should work fine.
