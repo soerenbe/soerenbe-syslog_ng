@@ -1,0 +1,32 @@
+{
+  "name": "soerenbe-syslog_ng",
+  "version": "0.1.0",
+  "author": "soerenbe",
+  "summary": "Installs, configures, and manages Syslog-ng package including client and server configuration",
+  "license": "Apache 2.0",
+  "source": "git://github.com/soerenbe/syslog_ng.git",
+  "project_page": "https://github.com/soerenbe/soerenbe-syslog_ng",
+  "issues_url": "https://github.com/soerenbe/soerenbe-syslog_ng",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "10.04",
+        "12.04",
+        "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 2.4.0"},
+    {"name":"puppetlabs/concat","version_requirement":">= 1.1.1"}
+  ]
+}
+
