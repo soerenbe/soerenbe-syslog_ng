@@ -1,5 +1,11 @@
 log {
   source(<%= @source %>);
+<% if @parser -%>
+  parser(<%= parser %>);
+<% end -%>
+<% if @rewrite -%>
+  rewrite(<%= rewrite %>);
+<% end -%>
 <% if @filter.is_a?(Array) -%>
 <% @filter.each do |f| -%>
   filter(<%= f %>);
@@ -18,7 +24,7 @@ log {
 <% end -%>
 <% else -%>
 <% if @destination -%>
-  destination(<%= destination %>);
+  destination(<%= @destination %>);
 <% end -%>
 <% end -%>
 <% if @file -%>
