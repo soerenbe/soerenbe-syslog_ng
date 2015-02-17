@@ -4,23 +4,11 @@ class syslog_ng::client (
   $proto      = "udp",
   ) {
   include syslog_ng
-  case $proto {
-    'UDP', 'udp': {
-      syslog_ng::destination::udpclient {'d_auto_logsrv':
-        ip   => $log_server,
-        port => $log_port,
-      }
-    }
-    'TCP', 'tcp': {
-      syslog_ng::destination::tcpclient {'d_auto_logsrv':
-        ip   => $log_server,
-        port => $log_port,
-      }
-    }
-    default: {
-      fail("$proto is not supported by syslog_ng::client")
-    }
+  syslog_ng::destination::network {'d_auto_logsrv':
+    log_server => $log_server,
+    log_port   => $log_port,
+    proto      => $proto,
   }
-  syslog_ng::log{"logtarget_auto_logsrv": source => "s_src", destination => "d_auto_logsrv"}
+  syslog_ng::log{"logtarget_auto_logsrv": source => $::syslog_ng::local_source, destination => "d_auto_logsrv"}
 }
   

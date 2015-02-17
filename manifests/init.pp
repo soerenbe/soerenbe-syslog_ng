@@ -67,6 +67,7 @@ class syslog_ng (
     $syslog_ng::params::config_file_destination_fallback,
     $syslog_ng::params::config_file_destination_remote,
     $syslog_ng::params::config_file_filter,
+    $syslog_ng::params::config_file_parser,
     $syslog_ng::params::config_file_logging,
     $syslog_ng::params::config_file_fallback,
   ]
@@ -146,6 +147,37 @@ define syslog_ng::source::system {
       spec  => "system(); internal();",
     }
 }
+
+#
+# Parser
+#
+
+define syslog_ng::parser (
+  $spec   = undef,
+  $target = $::syslog_ng::config_file_parser,
+  ) {
+  $entry_type = "parser"
+  concat::fragment{ "$name":
+    target  => $target,
+    content => template('syslog_ng/entry.erb')
+  }
+}
+
+#
+# rewrite
+#
+
+define syslog_ng::rewrite (
+  $spec   = undef,
+  $target = $::syslog_ng::config_file_rewrite,
+  ) {
+  $entry_type = "rewrite"
+  concat::fragment{ "$name":
+    target  => $target,
+    content => template('syslog_ng/entry.erb')
+  }
+}
+
 
 #
 # Destinations
@@ -232,6 +264,8 @@ define syslog_ng::log (
   $source          = undef,
   $filter          = undef,
   $filter_spec     = undef,
+  $parser          = undef,
+  $rewrite         = undef,
   $destination     = undef,
   $file            = undef,
   $fallback        = undef,
