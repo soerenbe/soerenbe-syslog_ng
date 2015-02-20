@@ -12,7 +12,7 @@ log {
 <% end -%>
 <% else -%>
 <% if @filter -%>
-  filter(<%= filter %>);
+  filter(<%= @filter %>);
 <% end -%>
 <% end -%>
 <% if @filter_spec -%>
@@ -28,7 +28,7 @@ log {
 <% end -%>
 <% end -%>
 <% if @file -%>
-  destination(d_<%= name %>);
+  destination(d_<%= @name %>);
 <% end -%>
 <% if @fallback -%>
 flags(fallback);
