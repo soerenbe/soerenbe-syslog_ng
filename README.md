@@ -219,7 +219,23 @@ This type defines a syslog-ng filter. You may use any filter syntax syslog-ng pr
 
 ```puppet
     define syslog_ng::filter (
-      $spec = undef,           # specification of the destination
+      $spec = undef,           # specification of the filter
+      )
+```
+
+### Defined Type: syslog_ng::rewrite
+This type defines a syslog-ng rewrite. You may use any filter syntax syslog-ng provides.
+```puppet
+    define syslog_ng::rewrite (
+      $spec = undef,           # specification of the rewrite
+      )
+```
+
+### Defined Type: syslog_ng::parser
+This type defines a syslog-ng parser. You may use any filter syntax syslog-ng provides.
+```puppet
+    define syslog_ng::parser (
+      $spec = undef,           # specification of the parser
       )
 ```
 
@@ -314,5 +330,5 @@ Futher releases may add some features depending on the developers motivation/req
 
 ## Development
 
-If you have any bugfixes, enhancments that should be included in this module feel free to send me a pull request.
+If you have any bugfixes, enhancements that should be included in this module feel free to send me a pull request.
 
