@@ -16,7 +16,7 @@ log {
 <% end -%>
 <% end -%>
 <% if @filter_spec -%>
-  filter(f_<%= filter_spec %>);
+  filter(f_<%= @name %>);
 <% end -%>
 <% if @destination.is_a?(Array) -%>
 <% @destination_array.each do |d| -%>

@@ -2,10 +2,10 @@ syslog_ng::filter {'test_filter':
   spec => 'host("test-machine")'
 }
 
-$source="mysource"
-$directory="/var/log/test"
-$filter="test_filter"
-$group="root"
+$source='mysource'
+$directory='/var/log/test'
+$filter='test_filter'
+$group='root'
 
 include syslog_ng
 

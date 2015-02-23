@@ -1,10 +1,10 @@
+# manage syslog-ng service
 class syslog_ng::service {
   service { 'syslog_ng':
-    name       => "syslog-ng",
     ensure     => 'running',
+    name       => 'syslog-ng',
     hasstatus  => true,
     hasrestart => true,
     require    => Package['syslog-ng'],
   }
-  # TODO "syslog-ng -s" macht ein configcheck. Das sollte erst gecheckt werden.
 }

@@ -1,7 +1,9 @@
+# network client class. This can be use for simply log everything to a remote
+# host
 class syslog_ng::client (
   $log_server = undef,
   $log_port   = undef,
-  $proto      = "udp",
+  $proto      = 'udp',
   ) {
   include syslog_ng
   syslog_ng::destination::network {'d_auto_logsrv':
@@ -9,6 +11,6 @@ class syslog_ng::client (
     log_port   => $log_port,
     proto      => $proto,
   }
-  syslog_ng::log{"logtarget_auto_logsrv": source => $::syslog_ng::local_source, destination => "d_auto_logsrv"}
+  syslog_ng::log{'logtarget_auto_logsrv': source => $::syslog_ng::local_source, destination => 'd_auto_logsrv'}
 }
   
