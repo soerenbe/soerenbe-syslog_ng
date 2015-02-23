@@ -1,7 +1,8 @@
+# Standard parameters for the modul
 class syslog_ng::params {
-  $system_log_dir = "/var/log"
-  $config_dir     = "/etc/syslog-ng/conf.d"
-  $local_source   = "s_src"
+  $system_log_dir = '/var/log'
+  $config_dir     = '/etc/syslog-ng/conf.d'
+  $local_source   = 's_src'
   $reminder_file  = undef
 
   # Default global settings for syslog-ng
@@ -10,22 +11,22 @@ class syslog_ng::params {
   #
   # Global permissions
   $create_dirs               = true   # If true, all subdirectories are created. TODO: Maybe define for each file?
-  $default_owner             = "root"
-  $default_group             = "adm"
-  $default_perm              = "0640"
+  $default_owner             = 'root'
+  $default_group             = 'adm'
+  $default_perm              = '0640'
   # DNS behaviour
-  $use_fqdn                  = "no"
-  $use_dns                   = "yes"
-  $chain_hostnames           = "no"
+  $use_fqdn                  = 'no'
+  $use_dns                   = 'yes'
+  $chain_hostnames           = 'no'
   # Logfile behaviour
   $stats_freq                = 0
   $mark_freq                 = 0
   # Performance tweaks
-  $threaded                  = "no"
+  $threaded                  = 'no'
   $flush_lines               = 0
-  $log_fifo_size             = "10000"
+  $log_fifo_size             = '10000'
   # default is 10000, this is far to much. This should be enough for outgoing destinations
-  $log_fifo_size_destination = "1000"
+  $log_fifo_size_destination = '1000'
 
   # Config file fragments
   $config_file_sources              = "${config_dir}/10sources.conf"

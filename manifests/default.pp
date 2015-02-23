@@ -1,3 +1,6 @@
+# Install a default syslog deamon which may be applied for different sources to
+# different directories This can be used so collect the logs from remote hosts
+# and log them to specific directories.
 define syslog_ng::default (
   $source    = undef,
   $directory = $::syslog_ng::system_log_dir,
@@ -16,7 +19,7 @@ define syslog_ng::default (
   else {
     $f = "${::syslog_ng::config_dir}/15block_default_${name}.conf"
   }
-  file { "$f":
+  file { $f:
     content => template('syslog_ng/default.conf.erb'),
     notify  => Service[syslog_ng],
   }
