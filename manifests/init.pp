@@ -70,6 +70,7 @@ class syslog_ng (
     $syslog_ng::params::config_file_parser,
     $syslog_ng::params::config_file_logging,
     $syslog_ng::params::config_file_fallback,
+    $syslog_ng::params::config_file_block,
   ]
   concat {$fragments:
     force  => true,

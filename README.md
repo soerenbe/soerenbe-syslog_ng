@@ -208,7 +208,7 @@ This type defines a log file as a destination.
 This type defines a remote host as a destination. Typically this is used by a log client to log to a remote server.
 
 ```puppet
-    class syslog_ng::destination::network (
+    define syslog_ng::destination::network (
       $log_server = undef,               # The IP Adress of the remote source
       $log_port = undef,               # The port of the remote source
       $proto    = "udp",               # The protocol to use. Only 'udp' and 'tcp' is supported
@@ -274,6 +274,39 @@ Examples that logs everything that is more or equal than an 'error' to the remot
     }
 ```
 
+### Defined Type: syslog_ng::block::install
+This type defines a additional block source file. Sometimes you already have a sophisticated block for your application. You can reuse it here.
+
+```puppet
+    define syslog_ng::block::install (
+      $source = undef       # The source of the block file       
+    )
+```
+
+Note that you can use any puppet source. You may want to place the block files on your fileserver or a seperate puppet module.
+
+### Defined Type: syslog_ng::block
+This type defines a instance of a block defined with `syslog_ng::block::install`.
+
+```puppet
+    define syslog_ng::block (
+      $block_name = undef,     # The name of the block (see syslog_ng::block::install)
+      $params     = undef,     # parameter hash for the block
+    )
+```
+
+Example:
+```puppet
+    syslog_ng::block{'myapp_app_fun':
+        block_name => 'myapp_app',
+        params     => {
+            'source' => 's_network',
+            'app'    => 'fun'
+        },
+    }
+```
+
+
 ### Defined Type: syslog_ng::default
 This type is typically used to create the default syslog-ng configuration. You may use it on your own for completely logging a remote server to a log server without completly define all filters, files and log entries. Note that a normal setup will fill the `$directory` with a log of different files.
 
@@ -324,9 +357,8 @@ The module does not cover all features by syslog-ng. Some examples:
 
 * message flags that are not the fallback flags
 * message templates
-* message reformating
 
-Futher releases may add some features depending on the developers motivation/requirements or community feedback.
+Further releases may add some features depending on the developers motivation/requirements or community feedback.
 
 ## Development
 

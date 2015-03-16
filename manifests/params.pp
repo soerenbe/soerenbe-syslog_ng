@@ -36,6 +36,7 @@ class syslog_ng::params {
   $config_file_filter               = "${config_dir}/30filter.conf"
   $config_file_parser               = "${config_dir}/40parser.conf"
   $config_file_rewrite              = "${config_dir}/50rewrite.conf"
+  $config_file_block                = "${config_dir}/60blocks.conf"
   $config_file_logging              = "${config_dir}/90logging.conf"
   $config_file_fallback             = "${config_dir}/99fallback.conf"
 }

@@ -1,0 +1,6 @@
+<%= @block_name %>(
+<% @params.each_pair do |key, value| -%>
+    <%= key %>(<%= value %>)
+<% end -%>
+)
+
