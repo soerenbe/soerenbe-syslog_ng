@@ -12,7 +12,7 @@ class syslog_ng::client (
     proto      => $proto,
   }
   syslog_ng::log{'logtarget_auto_logsrv':
-    source => $::syslog_ng::local_source,
+    source      => $::syslog_ng::local_source,
     destination => 'd_auto_logsrv'
   }
 }

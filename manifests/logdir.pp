@@ -7,6 +7,7 @@ define syslog_ng::logdir (
     ensure => directory,
     owner  => $owner,
     group  => $group,
+    notify => Service[syslog_ng],
   }
   if $::syslog_ng::reminder_file {
     file {"${name}/${::syslog_ng::reminder_file}":
