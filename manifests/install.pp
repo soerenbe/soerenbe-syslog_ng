@@ -3,7 +3,12 @@ class syslog_ng::install {
   include syslog_ng::params
   package { 'syslog-ng':
     ensure  => present,
+    require => Package['syslog-ng-core']
   }
+  package { 'syslog-ng-core':
+    ensure  => present,
+  }
+
   package { 'rsyslog':
     ensure  => absent,
   }
