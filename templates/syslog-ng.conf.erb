@@ -1,8 +1,9 @@
-@version: 3.5                                                                                                                                                                   
-@include "scl.conf"                                                                                                                                                             
-@include "`scl-root`/system/tty10.conf"                                                                                                                                         
+@version: 3.5
+@include "scl.conf"
+@include "`scl-root`/system/tty10.conf"
 
 options {
+    keep_hostname(<%= scope.lookupvar('syslog_ng::keep_hostname') %>);
     chain_hostnames(<%= scope.lookupvar('syslog_ng::chain_hostnames') %>);
     flush_lines(<%= scope.lookupvar('syslog_ng::flush_lines') %>);
     threaded(<%= scope.lookupvar('syslog_ng::threaded') %>);
