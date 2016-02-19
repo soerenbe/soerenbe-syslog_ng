@@ -54,6 +54,7 @@ class syslog_ng (
   $use_fqdn                  = $syslog_ng::params::use_fqdn,
   $use_dns                   = $syslog_ng::params::use_dns,
   $chain_hostnames           = $syslog_ng::params::chain_hostnames,
+  $keep_hostname             = $syslog_ng::params::keep_hostname,
   $stats_freq                = $syslog_ng::params::stats_freq,
   $mark_freq                 = $syslog_ng::params::mark_freq,
   $threaded                  = $syslog_ng::params::threaded,
@@ -174,4 +175,3 @@ define syslog_ng::log (
     content => template('syslog_ng/log.erb'),
   }
 }
-
