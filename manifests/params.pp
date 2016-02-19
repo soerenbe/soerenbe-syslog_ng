@@ -18,6 +18,7 @@ class syslog_ng::params {
   $use_fqdn                  = 'no'
   $use_dns                   = 'yes'
   $chain_hostnames           = 'no'
+  $keep_hostname             = 'no'
   # Logfile behaviour
   $stats_freq                = 0
   $mark_freq                 = 0
