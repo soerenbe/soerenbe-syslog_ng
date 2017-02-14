@@ -1,4 +1,4 @@
-@version: 3.5
+@version: <%= scope.lookupvar('syslog_ng::version') %>
 @include "scl.conf"
 @include "`scl-root`/system/tty10.conf"
 
