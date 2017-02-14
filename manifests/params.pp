@@ -1,5 +1,11 @@
 # Standard parameters for the modul
 class syslog_ng::params {
+  if $::lsbdistcodename == 'stretch' {
+    $version        = '3.8'
+  }
+  else {
+    $version        = '3.5'
+  }
   $system_log_dir = '/var/log'
   $config_dir     = '/etc/syslog-ng/conf.d'
   $local_source   = 's_src'

@@ -13,8 +13,15 @@ class syslog_ng::install {
     purge   => true,
     force   => true,
   }
-  file { '/etc/syslog-ng/scl.conf':
-    source => 'puppet:///modules/syslog_ng/scl.conf',
+  if $::lsbdistcodename == 'stretch' {
+    file { '/etc/syslog-ng/scl.conf':
+      source => 'puppet:///modules/syslog_ng/scl.conf.stretch',
+    }
+  }
+  else {
+    file { '/etc/syslog-ng/scl.conf':
+      source => 'puppet:///modules/syslog_ng/scl.conf',
+    }
   }
   file { $::syslog_ng::config_dir:
     ensure  => directory,
