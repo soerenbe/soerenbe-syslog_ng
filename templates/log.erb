@@ -1,5 +1,13 @@
 log {
+<% if @source.is_a?(Array) -%>
+<% @source.each do |s| -%>
+  source(<%= s %>);
+<% end -%>
+<% else -%>
+<% if @source -%>
   source(<%= @source %>);
+<% end -%>
+<% end -%>
 <% if @parser -%>
   parser(<%= parser %>);
 <% end -%>
