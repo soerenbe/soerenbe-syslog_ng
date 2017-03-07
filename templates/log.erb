@@ -1,5 +1,13 @@
 log {
+<% if @source.is_a?(Array) -%>
+<% @source.each do |s| -%>
+  source(<%= s %>);
+<% end -%>
+<% else -%>
+<% if @source -%>
   source(<%= @source %>);
+<% end -%>
+<% end -%>
 <% if @parser -%>
   parser(<%= parser %>);
 <% end -%>
@@ -19,7 +27,7 @@ log {
   filter(f_<%= @name %>);
 <% end -%>
 <% if @destination.is_a?(Array) -%>
-<% @destination_array.each do |d| -%>
+<% @destination.each do |d| -%>
   destination(<%= d %>);
 <% end -%>
 <% else -%>
