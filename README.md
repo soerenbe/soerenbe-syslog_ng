@@ -211,7 +211,7 @@ This type defines a remote host as a destination. Typically this is used by a lo
     class syslog_ng::destination::network (
       $log_server = undef,               # The IP Adress of the remote source
       $log_port = undef,               # The port of the remote source
-      $proto    = "udp",               # The protocol to use. Only 'udp' and 'tcp' is supported
+      $proto    = "udp",               # The protocol to use. Only 'udp', 'udp6', 'tcp', or 'tcp6' is supported
     )
 ```
 ### Defined Type: syslog_ng::filter
