@@ -17,3 +17,11 @@ fi
 # usage in the vagrant box:
 # $ puppet-lint /etc/modules/syslog_ng
 
+
+# Install rspec puppet
+if [[ ! -e "/usr/local/bin/rspec" ]]; then
+  gem install rspec-puppet
+fi
+# usage in vagrant box
+#   $ cd /etc/puppet/modules/syslog_ng
+#   $ rspec
