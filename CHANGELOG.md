@@ -1,3 +1,13 @@
+## unreleased Release 0.2.0
+###Summary
+This release added features for plain config files and blocks.
+I also did some refactoring to allign with the recommended puppet module structure.
+
+### Feature
+- Add define `syslog_ng::block`
+- Add define `syslog_ng::config::file`
+- Add define `syslog_ng::config::template`
+
 ## 2017-03-07 Release 0.1.2
 ###Summary
 Minor bug fixes and some new features

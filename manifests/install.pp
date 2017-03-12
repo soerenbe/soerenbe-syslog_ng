@@ -7,7 +7,7 @@ class syslog_ng::install {
   package { 'rsyslog':
     ensure  => absent,
   }
-  file { '/etc/syslog-ng/':
+  file { '/etc/syslog-ng':
     ensure  => directory,
     recurse => true,
     purge   => true,
