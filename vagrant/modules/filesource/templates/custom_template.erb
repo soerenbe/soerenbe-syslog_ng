@@ -1,0 +1,8 @@
+# Custom block for syslog-ng
+
+block root test_block2(host(), directory(), net()) {
+  # I got following config for your
+  <% @config.each do |key, value| %>
+  # <%= key %>: <%= value -%>
+  <% end %>
+};

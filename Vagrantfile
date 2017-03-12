@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.provision :puppet do |puppet|
       puppet.manifests_path = "vagrant/manifests"
       puppet.manifest_file = "site.pp"
+      puppet.module_path = ["vagrant/modules"]
       puppet.hiera_config_path = "vagrant/hiera/hiera.yaml"
       puppet.working_directory = "/etc/puppet/hiera"
       puppet.options = "--verbose"

@@ -22,6 +22,9 @@
     * [Defined Type: syslog_ng::log](#defined-log)
     * [Defined Type: syslog_ng::default](#defined-default)
     * [Defined Type: syslog_ng::logdir](#defined-logdir)
+    * [Defined Type: syslog_ng::block](defined-block)
+    * [Defined Type: syslog_ng::config::file](defined-config_file)
+    * [Defined Type: syslog_ng::config::template](defined-config_template)
 
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -308,8 +311,54 @@ Example:
 ### Defined Type: syslog_ng::logdir
 This type may define some log dirs which will be generated. syslog_ng::reminder_file is set, it will place this file in this directory. It also ensures that the directory is generated and have the correct permissions.
 
+## Defined Type: syslog_ng::block
+This type can define a syslog-ng block instance. Note that this module currently
+don't support building such blocks. You may deploy them with `syslog_ng::config::file`.
 
+Example:
 
+```puppet
+  syslog_ng::block{'my_block_instance':
+    block_name   => 'test_block',
+    block_config => {
+      'host'      => 'www.google.de',
+      'directory' => '/var/log/google.de',
+      'net'       => '192.168.0.0/255.255.255.0',
+    }
+  }
+```
+will create a syslog-ng config entry
+```
+test_block (host(www.google.de), directory(/var/log/google.de), net(192.168.0.0/255.255.255.0), )
+```
+
+## Defined Type: syslog_ng::config::file
+This define installs a plain config file into the syslog-ng config folder.
+This is useful when you want to deploy a already existing configuration or simply
+dont't want to express everything in the puppet language. You have to
+use the source parameter to point to the config file. This typically have to
+be placed in another module.
+
+Example:
+```puppet
+  syslog_ng::config::file {'my_block':
+    source      => 'puppet:///modules/filesource/custom_block.conf';
+  }
+```
+## Defined Type: syslog_ng::config::template
+Like `syslog_ng::config::file` you can provide a configuration template.
+You may pass a parameter `config` with a hash. This variable can be used
+inside the template.
+
+```puppet
+  syslog_ng::config::template {'my_template':
+    template => 'filesource/custom_template.erb',
+    config   => {
+      ip      => '192.168.10.10',
+      comment => '# This is a comment in a hash'
+    },
+  }
+```
 ## Reference
 
 * syslog-ng administation guide [Link](http://www.balabit.com/sites/default/files/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html/index.html)

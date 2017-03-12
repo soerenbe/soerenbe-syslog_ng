@@ -30,7 +30,7 @@ define syslog_ng::destination::network (
       }
     }
     default: {
-      fail("${proto} is not supported by syslog_ng::client")
+      fail("${proto} is not supported by syslog_ng::destination::network")
     }
   }
 }
