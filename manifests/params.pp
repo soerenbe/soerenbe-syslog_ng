@@ -31,6 +31,7 @@ class syslog_ng::params {
   # Performance tweaks
   $threaded                  = 'no'
   $flush_lines               = 0
+  $include_tty10             = true
   $log_fifo_size             = '10000'
   # default is 10000, this is far to much. This should be enough for outgoing destinations
   $log_fifo_size_destination = '1000'

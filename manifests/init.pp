@@ -59,6 +59,7 @@ class syslog_ng (
   $mark_freq                 = $syslog_ng::params::mark_freq,
   $threaded                  = $syslog_ng::params::threaded,
   $flush_lines               = $syslog_ng::params::flush_lines,
+  $include_tty10             = $syslog_ng::params::include_tty10,
   $log_fifo_size             = $syslog_ng::params::log_fifo_size,
   $log_fifo_size_destination = $syslog_ng::params::log_fifo_size_destination,
 ) inherits ::syslog_ng::params {
