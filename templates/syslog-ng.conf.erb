@@ -1,6 +1,8 @@
 @version: <%= scope.lookupvar('syslog_ng::version') %>
 @include "scl.conf"
+<% if @osfamily != 'RedHat'  %>
 @include "`scl-root`/system/tty10.conf"
+<% end %>
 
 options {
     keep_hostname(<%= scope.lookupvar('syslog_ng::keep_hostname') %>);
