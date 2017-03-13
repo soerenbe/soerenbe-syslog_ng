@@ -1,4 +1,4 @@
-## unreleased Release 0.2.0
+## 2017-03-13 Release 0.2.0
 ###Summary
 This release added features for plain config files and blocks.
 I also did some refactoring to allign with the recommended puppet module structure.
