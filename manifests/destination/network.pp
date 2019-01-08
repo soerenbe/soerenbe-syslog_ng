@@ -6,7 +6,7 @@ define syslog_ng::destination::network (
   $ca_dir     = undef,
   ) {
   if $ca_dir {
-    tls_settings = "tls(ca_dir('${ca_dir}') peer-verify(required-untrusted)"
+    tls_settings = " tls(ca_dir('${ca_dir}') peer-verify(required-untrusted)"
   }
   else {
     tls_setting = ""
@@ -26,13 +26,13 @@ define syslog_ng::destination::network (
     }
     'TCP', 'tcp': {
       syslog_ng::destination { $name:
-        spec   => "tcp('${log_server}' port(${log_port}) log_fifo_size(${::syslog_ng::log_fifo_size_destination}) ${tls_settings});",
+        spec   => "tcp('${log_server}' port(${log_port}) log_fifo_size(${::syslog_ng::log_fifo_size_destination})${tls_settings});",
         target => $syslog_ng::params::config_file_destination_remote
       }
     }
     'TCP6', 'tcp6': {
       syslog_ng::destination { $name:
-        spec   => "tcp6('${log_server}' port(${log_port}) log_fifo_size(${::syslog_ng::log_fifo_size_destination}) ${tls_settings});",
+        spec   => "tcp6('${log_server}' port(${log_port}) log_fifo_size(${::syslog_ng::log_fifo_size_destination})${tls_settings});",
         target => $syslog_ng::params::config_file_destination_remote
       }
     }
