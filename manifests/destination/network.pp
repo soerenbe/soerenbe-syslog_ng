@@ -3,6 +3,7 @@ define syslog_ng::destination::network (
   $log_server = undef,
   $log_port   = undef,
   $proto      = 'udp',
+  $ca_dir     = undef,
   ) {
   case $proto {
     'UDP', 'udp': {
