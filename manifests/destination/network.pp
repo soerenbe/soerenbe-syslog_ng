@@ -9,7 +9,7 @@ define syslog_ng::destination::network (
     tls_settings = " tls(ca_dir('${ca_dir}') peer-verify(required-untrusted)"
   }
   else {
-    tls_setting = ""
+    tls_settings = ""
   }
   case $proto {
     'UDP', 'udp': {
