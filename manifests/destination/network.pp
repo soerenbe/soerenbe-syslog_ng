@@ -5,6 +5,12 @@ define syslog_ng::destination::network (
   $proto      = 'udp',
   $ca_dir     = undef,
   ) {
+  if $ca_dir {
+    tls_settings = "tls(ca_dir('${ca_dir}') peer-verify(required-untrusted)"
+  }
+  else {
+    tls_setting = ""
+  }
   case $proto {
     'UDP', 'udp': {
       syslog_ng::destination { $name:
