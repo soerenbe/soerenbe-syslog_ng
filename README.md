@@ -1,5 +1,7 @@
 # syslog_ng
 
+# THIS MODULE IS NO LONGER MAINTAINED !
+
 #### Table of Contents
 
 1. [Overview](#overview)
